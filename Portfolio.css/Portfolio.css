@@ -289,13 +289,13 @@ h2.nom_apple {
 
 /* Responsive */
 
-@media (max-width: 600px) {
+@media (max-width: 780px) {
     header {
         padding: 1rem;
     }
 
     .contenedor-header {
-        padding: 1rem;
+        padding: 0.1rem;
     }
 
     nav a {
