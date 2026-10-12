@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Paleta y tipografía estilo Apple (siempre en negro) */
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --color-apple-gray: #86868b;
+  --color-apple-card: #1d1d1f;
+  --color-apple-blue: #2997ff;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #000;
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-black text-white font-sans antialiased;
+}
+
+/* Texto con gradiente animado (azul → violeta → rosa) */
+.text-gradient {
+  background: linear-gradient(90deg, #2997ff, #5e5ce6, #bf5af2, #ff375f, #2997ff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-move 8s ease infinite;
+}
+
+@keyframes gradient-move {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Aparición suave al hacer scroll (ver hooks/useReveal) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .text-gradient { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
