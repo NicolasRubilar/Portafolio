@@ -19,19 +19,19 @@
 export const projects = [
   {
     title: 'Sipobus',
-    description: 'Proyecto web para consultar información de buses.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    image: '/img/sipobus.webp',
-    link: 'https://github.com/NicolasRubilar/SipoBus-.git',
+    description: 'Proyecto Universitario web para consultar información de buses.',
+    tags: ['HTML', 'CSS', 'React','TailwindCSS','JavaScript'],
+    image: '/img/imagenSipoBus.webp',
+    link: 'https://github.com/NicolasRubilar/sipobus-react-tailwindcss.git',
     gradient: 'from-blue-500 to-purple-600',
   },
-  // 👇 Agrega aquí tu próximo proyecto, por ejemplo:
-  // {
-  //   title: 'Mi nuevo proyecto',
-  //   description: 'Qué hace y qué aprendí.',
-  //   tags: ['React', 'Tailwind'],
-  //   image: '/img/mi-proyecto.webp',
-  //   link: 'https://github.com/NicolasRubilar/mi-proyecto',
-  //   gradient: 'from-pink-500 to-orange-400',
-  // },
+  {
+    title: 'Mi Taller',
+    description: 'Sistema de gestion de inventario web',
+    tags: ['HTML', 'CSS','React','TailwindCSS','JavaScript','Node.js','SQLite'],
+    image: '/img/MiTaller.webp.webp',
+    link: 'https://github.com/NicolasRubilar/Sistema-de-Inventario-Anais.git',
+    gradient: 'from-blue-500 to-purple-600',
+
+  }
 ]

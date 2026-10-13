@@ -45,7 +45,7 @@ export default function Projects() {
                 rel="noreferrer"
                 className="mt-6 text-sm font-medium text-apple-blue hover:underline"
               >
-                Ver proyecto ›
+                Ir a Github ›
               </a>
             </div>
           </article>

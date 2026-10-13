@@ -21,17 +21,17 @@ function getGrid(count) {
 export default function Skills() {
   return (
     <Section id="skills" eyebrow="Tecnologías" title="Skills">
-      {/* Bento: las categorías grandes (4+ skills) ocupan 2 columnas y 2 filas */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-flow-dense lg:grid-cols-3">
-        {skillCategories.map((category) => {
-          const isLarge = category.skills.length >= 4
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
+        {skillCategories.map((category, index) => {
+          const isLastOddCategory =
+            skillCategories.length % 2 === 1 && index === skillCategories.length - 1
           const { totalCols, spanFor } = getGrid(category.skills.length)
 
           return (
             <article
               key={category.title}
               className={`flex flex-col rounded-3xl border border-white/10 bg-apple-card/60 p-5 sm:p-6 ${
-                isLarge ? 'md:col-span-2 lg:row-span-2' : ''
+                isLastOddCategory ? 'md:col-span-2 md:w-1/2 md:justify-self-center' : ''
               }`}
             >
               <header className="mb-4">
@@ -59,7 +59,7 @@ export default function Skills() {
                       loading="lazy"
                       width="48"
                       height="48"
-                      className={`transition-transform duration-300 group-hover:scale-110 ${isLarge ? 'size-12' : 'size-10'}`}
+                      className="size-12 transition-transform duration-300 group-hover:scale-110"
                     />
                     <span className="text-sm font-medium text-white/90">{skill.name}</span>
                   </li>
