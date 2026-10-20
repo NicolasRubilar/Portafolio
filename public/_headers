@@ -1,6 +1,10 @@
 # Cabeceras para Cloudflare Pages (se aplican al publicar)
 
+# CSP: solo se carga código propio; las imágenes externas vienen de los CDN de íconos de Tecnologías.
+# Si agregas una imagen o script de otro sitio, suma su dominio aquí o el navegador lo bloqueará.
 /*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.jsdelivr.net https://cdn.simpleicons.org; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
