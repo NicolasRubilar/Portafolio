@@ -29,7 +29,7 @@ export const projects = [
     title: 'Mi Taller',
     description: 'Sistema de gestion de inventario web',
     tags: ['HTML', 'CSS','React','TailwindCSS','JavaScript','Node.js','SQLite'],
-    image: '/img/MiTaller.webp.webp',
+    image: '/img/MiTaller.webp',
     link: 'https://github.com/NicolasRubilar/Sistema-de-Inventario-Anais.git',
     gradient: 'from-blue-500 to-purple-600',
 

@@ -1,73 +1,47 @@
 import Section from './Section'
 import { skillCategories } from '../data/skills' // 👈 categorías y lenguajes se editan en src/data/skills.js
 
-const gcd = (a, b) => (b ? gcd(b, a % b) : a)
-
-// Calcula la grilla para que las skills llenen la tarjeta sin huecos.
-// Si la última fila queda incompleta, sus íconos se reparten el ancho en partes iguales
-// (ej: 5 skills → fila de 3 + fila de 2 más anchos, en vez de dejar un hueco).
-function getGrid(count) {
-  const perRow = count <= 3 ? count : Math.min(4, Math.ceil(count / 2))
-  const lastRow = count % perRow || perRow
-  const totalCols = (perRow * lastRow) / gcd(perRow, lastRow) // mínimo común múltiplo
-  const firstLastRowIndex = count - lastRow
-
-  return {
-    totalCols,
-    spanFor: (i) => (i >= firstLastRowIndex ? totalCols / lastRow : totalCols / perRow),
-  }
-}
-
+// Estilo "ficha técnica" de Apple: una sola tarjeta con una fila por categoría.
+// Cada fila tiene el título a la izquierda y las tecnologías a la derecha en celdas del mismo
+// tamaño, así una categoría con 2 skills se ve igual de ordenada que una con 7.
 export default function Skills() {
   return (
-    <Section id="skills" eyebrow="Tecnologías" title="Skills">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
-        {skillCategories.map((category, index) => {
-          const isLastOddCategory =
-            skillCategories.length % 2 === 1 && index === skillCategories.length - 1
-          const { totalCols, spanFor } = getGrid(category.skills.length)
-
-          return (
-            <article
-              key={category.title}
-              className={`flex flex-col rounded-3xl border border-white/10 bg-apple-card/60 p-5 sm:p-6 ${
-                isLastOddCategory ? 'md:col-span-2 md:w-1/2 md:justify-self-center' : ''
-              }`}
-            >
-              <header className="mb-4">
-                <h3
-                  className={`bg-linear-to-r ${category.gradient} w-fit bg-clip-text text-2xl font-semibold tracking-tight text-transparent`}
-                >
-                  {category.title}
-                </h3>
-                <p className="mt-1 text-sm text-apple-gray">{category.description}</p>
-              </header>
-
-              <ul
-                className="grid flex-1 auto-rows-fr gap-3"
-                style={{ gridTemplateColumns: `repeat(${totalCols}, minmax(0, 1fr))` }}
+    <Section id="skills" eyebrow="Lo que uso" title="Tecnologías">
+      <div className="divide-y divide-white/10 overflow-hidden rounded-3xl border border-white/10 bg-apple-card/60">
+        {skillCategories.map((category) => (
+          <article
+            key={category.title}
+            className="grid gap-5 p-6 sm:p-8 md:grid-cols-[13rem_1fr] md:gap-10"
+          >
+            <header>
+              <h3
+                className={`bg-linear-to-r ${category.gradient} w-fit bg-clip-text text-2xl font-semibold tracking-tight text-transparent`}
               >
-                {category.skills.map((skill, i) => (
-                  <li
-                    key={skill.name}
-                    style={{ gridColumn: `span ${spanFor(i)}` }}
-                    className="group flex min-h-28 flex-col items-center justify-center gap-3 rounded-2xl bg-white/5 p-4 transition-colors duration-300 hover:bg-white/10"
-                  >
-                    <img
-                      src={skill.icon}
-                      alt=""
-                      loading="lazy"
-                      width="48"
-                      height="48"
-                      className="size-12 transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <span className="text-sm font-medium text-white/90">{skill.name}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          )
-        })}
+                {category.title}
+              </h3>
+              <p className="mt-1 text-sm text-apple-gray">{category.description}</p>
+            </header>
+
+            <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {category.skills.map((skill) => (
+                <li
+                  key={skill.name}
+                  className="group flex items-center gap-3 rounded-2xl bg-white/5 px-4 py-3 transition-colors duration-300 hover:bg-white/10"
+                >
+                  <img
+                    src={skill.icon}
+                    alt=""
+                    loading="lazy"
+                    width="32"
+                    height="32"
+                    className={`size-8 shrink-0 transition-transform duration-300 group-hover:scale-110 ${skill.invert ? 'brightness-0 invert' : ''}`}
+                  />
+                  <span className="text-sm leading-tight font-medium text-white/90">{skill.name}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </div>
     </Section>
   )

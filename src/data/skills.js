@@ -26,7 +26,6 @@ export const skillCategories = [
       { name: 'Kotlin',  icon: `${DEVICON}/kotlin/kotlin-original.svg` },
       { name: 'MySQL',  icon: `${DEVICON}/mysql/mysql-original.svg` },
       { name: 'SQLite',  icon: `${DEVICON}/sqlite/sqlite-original.svg` },
-      { name: 'Oracle SQL Developer',icon: `${DEVICON}/oracle/oracle-original.svg `},
       { name: 'Node.js',  icon: `${DEVICON}/nodejs/nodejs-original.svg` },
     ],
   },
@@ -40,8 +39,18 @@ export const skillCategories = [
       { name: 'Git',     icon: `${DEVICON}/git/git-original.svg` },
       { name: 'GitHub',     icon: `${DEVICON}/github/github-original.svg` },
       { name: 'Trello',     icon: `${DEVICON}/trello/trello-original.svg` },
-      { name: 'Jira',     icon: `${DEVICON}/jira/jira-original.svg` }
+      { name: 'Jira',     icon: `${DEVICON}/jira/jira-original.svg` },
+      { name: 'Oracle SQL Developer', icon: `${DEVICON}/oracle/oracle-original.svg` },
     ],
   },
-  
+  {
+    title: 'Cloud',
+    description: 'Servicios en la nube',
+    gradient: 'from-amber-300 to-orange-500',
+    skills: [
+      // invert: el logo original es oscuro, así se ve blanco sobre el fondo negro
+      { name: 'AWS',   icon: `${DEVICON}/amazonwebservices/amazonwebservices-plain-wordmark.svg`, invert: true },
+      { name: 'Azure', icon: `${DEVICON}/azure/azure-original.svg` },
+    ],
+  },
 ]

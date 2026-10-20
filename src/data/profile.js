@@ -8,16 +8,17 @@ import { HiOutlineMail } from 'react-icons/hi'
 
 export const profile = {
   name: 'Nicolas H. Rubilar',
-  role: 'Computer Engineering student',
+  role: 'Estudiante de Ingeniería en Informática',
   about:
-    "I'm a Computer Engineering student passionate about software development, particularly front-end development. I enjoy learning new technologies and turning ideas into impactful projects.",
-  cvUrl: '/img/Curriculum%20Nicolas%20Ignacio%20Hernandez%20Rubilar.pdf.pdf',
+    'Soy estudiante de Ingeniería en Informática, apasionado por el desarrollo de software, especialmente el front-end. Disfruto aprender nuevas tecnologías y convertir ideas en proyectos con impacto.',
+  cvUrl: '/img/Curriculum-Nicolas-Hernandez-Rubilar.pdf',
 }
 
 // Para agregar un contacto, copia una línea. Íconos disponibles: https://react-icons.github.io/react-icons
 export const contacts = [
-  { label: 'WhatsApp', href: 'https://wa.me/569XXXXXXXX',          icon: FaWhatsapp },
-  { label: 'GitHub',   href: 'https://github.com/NicolasRubilar', icon: FaGithub },
-  { label: 'Email',    href: 'mailto:tuemail@dominio.com',        icon: HiOutlineMail },
-  { label: 'Instagram',    href: 'https://www.instagram.com/nicolas_h_rubilar/',        icon: BsInstagram }
+  // { label: 'WhatsApp', href: 'https://wa.me/569XXXXXXXX', icon: FaWhatsapp }, // 👈 descomenta cuando quieras mostrarlo
+  { label: 'LinkedIn',  href: 'https://www.linkedin.com/in/nicolas-rubilar-3830a1249/', icon: FaLinkedin },
+  { label: 'GitHub',    href: 'https://github.com/NicolasRubilar',           icon: FaGithub },
+  { label: 'Email',     href: 'https://mail.google.com/mail/?view=cm&fs=1&to=nicolas28rubilar02@gmail.com', icon: HiOutlineMail },
+  { label: 'Instagram', href: 'https://www.instagram.com/nicolas_h_rubilar/', icon: BsInstagram },
 ]

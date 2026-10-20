@@ -1,8 +1,11 @@
-import { profile } from '../data/profile'
+import { profile, contacts } from '../data/profile'
 
 export default function Hero() {
   return (
-    <section id="top" className="relative flex min-h-svh items-center justify-center overflow-hidden px-4 pt-14">
+    <section
+      id="top"
+      className="relative flex min-h-[calc(100svh-0.625rem)] items-center justify-center overflow-hidden bg-linear-to-b from-[#0a2a6e] to-black px-4 pt-14"
+    >
       {/* Brillos de color de fondo (gradientes radiales: mucho más livianos que un filtro blur) */}
       <div
         aria-hidden
@@ -30,9 +33,22 @@ export default function Hero() {
           >
             Ver proyectos
           </a>
-          <a href="#contact" className="text-sm font-medium text-apple-blue hover:underline">
-            Contáctame ›
-          </a>
+          <ul className="flex items-center gap-3">
+            {contacts.map(({ label, href, icon: Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  title={label}
+                  className="flex size-11 items-center justify-center rounded-full bg-white/10 text-lg text-white/85 transition-colors duration-300 hover:bg-white hover:text-black"
+                >
+                  <Icon aria-hidden />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

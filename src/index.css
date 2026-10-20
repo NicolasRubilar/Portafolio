@@ -18,6 +18,16 @@ body {
   @apply bg-black text-white font-sans antialiased;
 }
 
+/* Esquinas invertidas de la muesca del navbar (ver Navbar) */
+.notch-ear {
+  width: 1rem;
+  height: 1rem;
+  background: radial-gradient(circle at 0 100%, transparent 1rem, var(--color-apple-card) calc(1rem + 0.5px));
+}
+.notch-ear-right {
+  background: radial-gradient(circle at 100% 100%, transparent 1rem, var(--color-apple-card) calc(1rem + 0.5px));
+}
+
 /* Texto con gradiente animado (azul → violeta → rosa) */
 .text-gradient {
   background: linear-gradient(90deg, #2997ff, #5e5ce6, #bf5af2, #ff375f, #2997ff);
