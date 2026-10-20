@@ -53,4 +53,13 @@ export const skillCategories = [
       { name: 'Azure', icon: `${DEVICON}/azure/azure-original.svg` },
     ],
   },
+  {
+    title: 'IA',
+    description: 'Asistentes para programar mejor',
+    gradient: 'from-orange-300 to-violet-500',
+    skills: [
+      { name: 'Claude Code', icon: 'https://cdn.simpleicons.org/claude' },
+      { name: 'Gemini',      icon: 'https://cdn.simpleicons.org/googlegemini' },
+    ],
+  },
 ]

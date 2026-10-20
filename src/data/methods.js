@@ -8,6 +8,7 @@ export const methodologies = [
   { name: 'Metodologías ágiles', description: 'Entregas cortas e iterativas, adaptándose al feedback.' },
   { name: 'Metodologías tradicionales', description: 'Planificación por etapas, como el modelo en cascada.' },
   { name: 'Gestión de proyectos', description: 'Fundamentos de planificación, alcance y seguimiento.' },
+  { name: 'Desarrollo asistido por IA', description: 'Claude Code para optimizar código y Gemini para documentar.' },
 ]
 
 export const softSkills = [

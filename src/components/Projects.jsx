@@ -17,17 +17,31 @@ export default function Projects() {
             />
 
             <div className="relative aspect-16/10 overflow-hidden">
-              <img
-                src={p.image}
-                alt={p.title}
-                loading="lazy"
-                width="800"
-                height="500"
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+              {p.image ? (
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  loading="lazy"
+                  width="800"
+                  height="500"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              ) : (
+                // Sin captura: el nombre del proyecto sobre su gradiente
+                <div
+                  className={`flex h-full w-full items-center justify-center bg-linear-to-br ${p.gradient ?? 'from-blue-500 to-purple-600'} transition-transform duration-500 group-hover:scale-105`}
+                >
+                  <span className="text-4xl font-semibold tracking-tight text-white">{p.title}</span>
+                </div>
+              )}
             </div>
 
             <div className="relative flex flex-1 flex-col p-6">
+              {p.badge && (
+                <p className="mb-2 w-fit rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/70">
+                  {p.badge}
+                </p>
+              )}
               <h3 className="text-2xl font-semibold tracking-tight">{p.title}</h3>
               <p className="mt-2 flex-1 text-apple-gray">{p.description}</p>
 
@@ -39,14 +53,16 @@ export default function Projects() {
                 ))}
               </ul>
 
-              <a
-                href={p.link}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-6 text-sm font-medium text-apple-blue hover:underline"
-              >
-                Ir a Github ›
-              </a>
+              <div className="mt-6 flex gap-5 text-sm font-medium">
+                {p.demo && (
+                  <a href={p.demo} target="_blank" rel="noreferrer" className="text-apple-blue hover:underline">
+                    Ver sitio ›
+                  </a>
+                )}
+                <a href={p.link} target="_blank" rel="noreferrer" className="text-apple-blue hover:underline">
+                  Ver código ›
+                </a>
+              </div>
             </div>
           </article>
         ))}

@@ -10,7 +10,9 @@ export const profile = {
   name: 'Nicolas H. Rubilar',
   role: 'Estudiante de Ingeniería en Informática',
   about:
-    'Soy estudiante de Ingeniería en Informática, apasionado por el desarrollo de software, especialmente el front-end. Disfruto aprender nuevas tecnologías y convertir ideas en proyectos con impacto.',
+    'Soy estudiante de Ingeniería en Informática en Duoc UC, apasionado por el desarrollo de software, especialmente el front-end. Disfruto aprender nuevas tecnologías y convertir ideas en proyectos con impacto.',
+  // Se muestran como etiquetas en "Sobre mí"
+  availability: ['Santiago, Chile', 'Buscando práctica', 'Disponible para freelance'],
   cvUrl: '/img/Curriculum-Nicolas-Hernandez-Rubilar.pdf',
 }
 
