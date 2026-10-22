@@ -1,14 +1,88 @@
+import { useEffect, useRef, useState } from 'react'
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import Section from './Section'
 import { projects } from '../data/projects' // 👈 los proyectos se editan en src/data/projects.js
 
+const GAP = 24 // gap-6 entre tarjetas
+
+const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
 export default function Projects() {
+  const track = useRef(null)
+  const [active, setActive] = useState(0)
+  const [edges, setEdges] = useState({ start: true, end: false })
+
+  // Lee el scroll del carrusel: qué tarjeta está al inicio y si se llegó a un extremo
+  useEffect(() => {
+    const el = track.current
+    let frame = 0
+
+    const update = () => {
+      frame = 0
+      const { scrollLeft, scrollWidth, clientWidth } = el
+      const atEnd = scrollLeft + clientWidth >= scrollWidth - 4
+      setEdges({ start: scrollLeft <= 4, end: atEnd })
+
+      // Al final la última tarjeta ya no puede quedar al inicio: se marca igual como activa
+      if (atEnd) return setActive(el.children.length - 1)
+      const pad = parseFloat(getComputedStyle(el).paddingLeft)
+      let nearest = 0
+      let min = Infinity
+      ;[...el.children].forEach((card, i) => {
+        const d = Math.abs(card.offsetLeft - pad - scrollLeft)
+        if (d < min) [min, nearest] = [d, i]
+      })
+      setActive(nearest)
+    }
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+
+    update()
+    el.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      cancelAnimationFrame(frame)
+      el.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [])
+
+  const goTo = (i) => {
+    const el = track.current
+    const card = el.children[i]
+    if (!card) return
+    const pad = parseFloat(getComputedStyle(el).paddingLeft)
+    el.scrollTo({ left: card.offsetLeft - pad, behavior: reduceMotion() ? 'auto' : 'smooth' })
+  }
+
+  const step = (dir) => {
+    const el = track.current
+    const width = el.children[0]?.offsetWidth ?? 0
+    el.scrollBy({ left: dir * (width + GAP), behavior: reduceMotion() ? 'auto' : 'smooth' })
+  }
+
+  // Si todas las tarjetas caben, no hay nada que deslizar
+  const scrollable = !(edges.start && edges.end)
+
   return (
     <Section id="projects" eyebrow="Trabajo" title="Proyectos">
-      <div className="flex flex-wrap justify-center gap-6">
-        {projects.map((p) => (
+      {/* El carrusel sale hasta el borde en el celular para que se vea que hay más tarjetas */}
+      <div
+        ref={track}
+        role="region"
+        aria-roledescription="carrusel"
+        aria-label="Proyectos"
+        tabIndex={0}
+        className="no-scrollbar -mx-4 flex snap-x snap-mandatory scroll-px-4 gap-6 overflow-x-auto px-4 py-2 outline-none focus-visible:ring-2 focus-visible:ring-apple-blue/60 sm:-mx-6 sm:scroll-px-6 sm:px-6"
+      >
+        {projects.map((p, i) => (
           <article
             key={p.title}
-            className="group relative flex w-full flex-col sm:w-88 overflow-hidden rounded-3xl border border-white/10 bg-apple-card/60 transition-all duration-300 hover:-translate-y-1 hover:border-white/20"
+            aria-roledescription="diapositiva"
+            aria-label={`${i + 1} de ${projects.length}: ${p.title}`}
+            className="group relative flex w-[85%] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-white/10 bg-apple-card/60 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 sm:w-88"
           >
             {/* Brillo de color al pasar el mouse */}
             <div
@@ -69,6 +143,51 @@ export default function Projects() {
           </article>
         ))}
       </div>
+
+      {scrollable && (
+        <div className="mt-8 flex items-center justify-center gap-6">
+          <ArrowButton label="Proyecto anterior" disabled={edges.start} onClick={() => step(-1)}>
+            <FiChevronLeft className="size-5" />
+          </ArrowButton>
+
+          <div className="flex items-center gap-2">
+            {projects.map((p, i) => (
+              <button
+                key={p.title}
+                type="button"
+                onClick={() => goTo(i)}
+                aria-label={`Ir a ${p.title}`}
+                aria-current={i === active}
+                className="grid size-6 place-items-center"
+              >
+                <span
+                  className={`block h-1.5 rounded-full transition-all duration-300 ${
+                    i === active ? 'w-6 bg-white' : 'w-1.5 bg-white/30 hover:bg-white/60'
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+
+          <ArrowButton label="Proyecto siguiente" disabled={edges.end} onClick={() => step(1)}>
+            <FiChevronRight className="size-5" />
+          </ArrowButton>
+        </div>
+      )}
     </Section>
+  )
+}
+
+function ArrowButton({ label, disabled, onClick, children }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={label}
+      className="grid size-11 place-items-center rounded-full border border-white/15 bg-apple-card text-white transition-all hover:border-white/30 hover:bg-white/10 active:scale-95 disabled:pointer-events-none disabled:opacity-30"
+    >
+      {children}
+    </button>
   )
 }
