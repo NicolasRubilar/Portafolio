@@ -11,7 +11,7 @@
  *   tags        → tecnologías usadas (se muestran como etiquetas)
  *   image       → (opcional, sin imagen se muestra el nombre sobre el gradiente) guarda la imagen en /public/img/ y escribe '/img/archivo.webp'
  *                 (usa .webp de ~800px de ancho para que cargue rápido: https://squoosh.app)
- *   link        → repositorio de GitHub
+ *   link        → (opcional) repositorio de GitHub; si es privado déjalo fuera y no sale "Ver código"
  *   badge       → (opcional) etiqueta sobre el título, ej: 'Concepto de diseño'
  *   demo        → (opcional) sitio publicado; agrega el botón "Ver sitio"
  *   gradient    → (opcional) colores del brillo de la tarjeta, clases de Tailwind
@@ -46,5 +46,14 @@ export const projects = [
     image: '/img/TiendaBebidas.webp',
     link: 'https://github.com/NicolasRubilar/e-commerce-bebida-Prueba-de-dise-o-',
     gradient: 'from-red-500 to-orange-500',
+  },
+  {
+    title: 'Minimarket POS',
+    description:
+      'Punto de venta e inventario para un minimarket: caja con lector de códigos por cámara, venta a granel y precio libre, turnos de caja, carga de facturas XML del SII, reportes, roles con inicio de sesión y catálogo público con horario. Publicado con base de datos en la nube.',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Spring Boot', 'Java', 'PostgreSQL'],
+    image: '/img/MinimarketPOS.webp',
+    demo: 'https://inventario-pos.netlify.app',
+    gradient: 'from-green-500 to-lime-500',
   },
 ]

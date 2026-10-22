@@ -59,9 +59,11 @@ export default function Projects() {
                     Ver sitio ›
                   </a>
                 )}
-                <a href={p.link} target="_blank" rel="noreferrer" className="text-apple-blue hover:underline">
-                  Ver código ›
-                </a>
+                {p.link && (
+                  <a href={p.link} target="_blank" rel="noreferrer" className="text-apple-blue hover:underline">
+                    Ver código ›
+                  </a>
+                )}
               </div>
             </div>
           </article>
